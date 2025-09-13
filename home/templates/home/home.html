@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - EPIs Controle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+        .sidebar {
+            width: 220px;
+            background: #2c3e50;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding-top: 30px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.3em;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 30px;
+            display: block;
+            transition: background 0.2s;
+        }
+        .sidebar a:hover {
+            background: #34495e;
+        }
+        .main {
+            margin-left: 220px;
+            padding: 40px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+        .user-photo {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 16px;
+            border: 2px solid #2c3e50;
+        }
+        .user-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .user-menu {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 240px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            min-width: 180px;
+            z-index: 10;
+        }
+        .user-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .user-menu li {
+            padding: 14px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .user-menu li:last-child {
+            border-bottom: none;
+        }
+        .user-menu li:hover {
+            background: #f4f6f8;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>EPIs Controle</h2>
+        <a href="/" ><i class="fa fa-home"></i> Home</a>
+        <a href="/colaboradores/cadastrar/"><i class="fa fa-user-plus"></i> Cadastrar Colaborador</a>
+        <a href="/relatorio/"><i class="fa fa-file-alt"></i> Relatório de Colaboradores</a>
+        <a href="/equipamentos/cadastrar/"><i class="fa fa-tools"></i> Cadastrar Equipamento</a>
+        <a href="/controle-epi/"><i class="fa fa-shield-alt"></i> Controle de EPI</a>
+        <a href="#"><i class="fa fa-cogs"></i> Configurações</a>
+    </div>
+    <div class="main">
+        <div class="user-info" onclick="toggleUserMenu()">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto do Usuário" class="user-photo">
+            <span class="user-name">João da Silva</span>
+        </div>
+        <div class="user-menu" id="userMenu">
+            <ul>
+                <li>Perfil</li>
+                <li>Configurações</li>
+                <li>Ajuda</li>
+            </ul>
+        </div>
+        <h1>Bem-vindo ao sistema de controle de EPIs!</h1>
+        <p>Utilize o menu lateral para navegar pelo sistema.</p>
+    </div>
+    <script>
+        function toggleUserMenu() {
+            var menu = document.getElementById('userMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById('userMenu');
+            var userInfo = document.querySelector('.user-info');
+            if (!userInfo.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

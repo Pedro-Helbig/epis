@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Empréstimos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar" style="width:220px;background:#2c3e50;color:#fff;height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;padding-top:30px;">
+        <h2 style="text-align:center;margin-bottom:30px;font-size:1.3em;">EPIs Controle</h2>
+    <a href="/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-home"></i> Home</a>
+    <a href="/colaboradores/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-user-plus"></i> Cadastrar Colaborador</a>
+    <a href="/relatorio/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-file-alt"></i> Relatório de Colaboradores</a>
+    <a href="/equipamentos/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-tools"></i> Cadastrar Equipamento</a>
+    <a href="/controle-epi/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-shield-alt"></i> Controle de EPI</a>
+    <a href="#" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-cogs"></i> Configurações</a>
+    </div>
+    <div class="container mt-5" style="margin-left:240px;">
+        <h2>Relatório de Empréstimos</h2>
+        <form method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="nome" class="form-control" placeholder="Pesquisar colaborador pelo nome" value="{{ nome }}">
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </div>
+        </form>
+
+        <h4>Colaboradores</h4>
+        <table class="table table-bordered table-hover mb-4">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Cargo</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for colaborador in colaboradores %}
+                <tr>
+                    <td>{{ colaborador.nome }}</td>
+                    <td>{{ colaborador.email }}</td>
+                    <td>{{ colaborador.cargo }}</td>
+                    <td>{{ colaborador.telefone }}</td>
+                    <td>
+                        <a href="/colaboradores/{{ colaborador.id }}/editar/" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="/colaboradores/{{ colaborador.id }}/excluir/" class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Nenhum colaborador encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h4>Empréstimos</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Colaborador</th>
+                    <th>Equipamento</th>
+                    <th>Data do Empréstimo</th>
+                    <th>Data Prevista de Devolução</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emprestimo in emprestimos %}
+                <tr>
+                    <td>{{ emprestimo.colaborador.nome }}</td>
+                    <td>{{ emprestimo.equipamento.nome }}</td>
+                    <td>{{ emprestimo.data_emprestimo }}</td>
+                    <td>{{ emprestimo.data_prevista_devolucao }}</td>
+                    <td>{{ emprestimo.status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Nenhum empréstimo encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/colaboradores/cadastrar/" class="btn btn-success">Cadastrar Colaborador</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

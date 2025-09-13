@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Equipamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar" style="width:220px;background:#2c3e50;color:#fff;height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;padding-top:30px;">
+        <h2 style="text-align:center;margin-bottom:30px;font-size:1.3em;">EPIs Controle</h2>
+        <a href="/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-home"></i> Home</a>
+        <a href="/colaboradores/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-user-plus"></i> Cadastrar Colaborador</a>
+        <a href="/relatorio/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-file-alt"></i> Relatório de Colaboradores</a>
+        <a href="/equipamentos/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-tools"></i> Cadastrar Equipamento</a>
+        <a href="#" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-cogs"></i> Configurações</a>
+    </div>
+    <div class="container mt-5" style="margin-left:240px;">
+        <h2>Editar Equipamento</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Salvar Alterações</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Django server",
+			"type": "shell",
+			"command": "C:/Users/phnh2/AppData/Local/Programs/Python/Python313/python.exe",
+			"args": [
+				"manage.py",
+				"runserver"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$python"
+			],
+			"group": "build"
+		}
+	]
+}
