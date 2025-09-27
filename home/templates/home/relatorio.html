@@ -3,21 +3,28 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Relatório de Empréstimos</title>
+    <title>Relatório de colaboradores</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar" style="width:220px;background:#2c3e50;color:#fff;height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;padding-top:30px;">
-        <h2 style="text-align:center;margin-bottom:30px;font-size:1.3em;">EPIs Controle</h2>
-        <a href="/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-home"></i> Home</a>
-        <a href="/colaboradores/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-user-plus"></i> Cadastrar Colaborador</a>
-        <a href="/relatorio/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-file-alt"></i> Relatório de Colaboradores</a>
-        <a href="/equipamentos/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-tools"></i> Cadastrar Equipamento</a>
-        <a href="/equipamentos/listar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-list"></i> Listar Equipamentos</a>
-        <a href="/controle-epi/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-shield-alt"></i> Controle de EPI</a>
-        <a href="/relatorio-epi/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-clipboard-list"></i> Relatório de EPI</a>
-        <a href="#" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-cogs"></i> Configurações</a>
+<div class="sidebar" style="width:220px;background:#0670e1;color:#fff;height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;padding-top:30px;">
+    
+    <!-- Logo + Texto -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:30px;">
+    <img src="{% static 'img/logo.jpeg' %}" alt="Logo" style="width:110px;height:110px;border-radius:50%;">
+        <h2 style="margin:0;font-size:1.3em;">EPITUDO</h2>
     </div>
+
+    <a href="/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-home"></i> Home</a>
+    <a href="/colaboradores/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-user-plus"></i> Cadastrar Colaborador</a>
+    <a href="/relatorio/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-file-alt"></i> Relatório de Colaboradores</a>
+    <a href="/equipamentos/cadastrar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-tools"></i> Cadastrar Equipamento</a>
+    <a href="/equipamentos/listar/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-list"></i> Listar Equipamentos</a>
+    <a href="/controle-epi/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-shield-alt"></i> Controle de EPI</a>
+    <a href="/relatorio-epi/" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-clipboard-list"></i> Relatório de EPI</a>
+    <a href="#" style="color:#fff;text-decoration:none;padding:15px 30px;display:block;"><i class="fa fa-cogs"></i> Configurações</a>
+</div>
+
     <div class="container mt-5" style="margin-left:240px;">
         <h2>Relatório de Empréstimos</h2>
         <form method="get" class="mb-4">
@@ -58,33 +65,6 @@
             </tbody>
         </table>
 
-        <h4>Empréstimos</h4>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Colaborador</th>
-                    <th>Equipamento</th>
-                    <th>Data do Empréstimo</th>
-                    <th>Data Prevista de Devolução</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for emprestimo in emprestimos %}
-                <tr>
-                    <td>{{ emprestimo.colaborador.nome }}</td>
-                    <td>{{ emprestimo.equipamento.nome }}</td>
-                    <td>{{ emprestimo.data_emprestimo }}</td>
-                    <td>{{ emprestimo.data_prevista_devolucao }}</td>
-                    <td>{{ emprestimo.status }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="5" class="text-center">Nenhum empréstimo encontrado.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
         <a href="/colaboradores/cadastrar/" class="btn btn-success">Cadastrar Colaborador</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
