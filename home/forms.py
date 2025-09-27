@@ -31,3 +31,8 @@ class EmprestimoForm(forms.ModelForm):
         else:
             # No editar, mostrar todos os status
             self.fields['status'].choices = Emprestimo.STATUS_CHOICES
+            # Se for edição de status, bloquear campos principais
+            self.fields['colaborador'].disabled = True
+            self.fields['equipamento'].disabled = True
+            self.fields['data_emprestimo'].disabled = True
+            self.fields['data_prevista_devolucao'].disabled = True

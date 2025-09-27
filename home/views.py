@@ -1,3 +1,21 @@
+def relatorio_epi(request):
+	nome_colab = request.GET.get('colaborador', '')
+	nome_equip = request.GET.get('equipamento', '')
+	status = request.GET.get('status', '')
+	emprestimos = Emprestimo.objects.all()
+	if nome_colab:
+		emprestimos = emprestimos.filter(colaborador__nome__icontains=nome_colab)
+	if nome_equip:
+		emprestimos = emprestimos.filter(equipamento__nome__icontains=nome_equip)
+	if status:
+		emprestimos = emprestimos.filter(status=status)
+	return render(request, 'home/relatorio_epi.html', {
+		'emprestimos': emprestimos,
+		'colaborador': nome_colab,
+		'equipamento': nome_equip,
+		'status': status,
+		'status_choices': Emprestimo.STATUS_CHOICES
+	})
 def listar_equipamentos(request):
 	nome = request.GET.get('nome', '')
 	equipamentos = Equipamento.objects.filter(nome__icontains=nome) if nome else Equipamento.objects.all()

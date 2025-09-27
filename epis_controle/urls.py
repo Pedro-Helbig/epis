@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from home.views import home, cadastrar_colaborador, editar_colaborador, excluir_colaborador, relatorio, cadastrar_equipamento, editar_equipamento, excluir_equipamento, listar_equipamentos
+from home.views import home, cadastrar_colaborador, editar_colaborador, excluir_colaborador, relatorio, cadastrar_equipamento, editar_equipamento, excluir_equipamento, listar_equipamentos, relatorio_epi
 from home.views import controle_epi
 
 urlpatterns = [
@@ -33,4 +33,5 @@ urlpatterns = [
     path('equipamentos/listar/', listar_equipamentos, name='listar_equipamentos'),
     path('controle-epi/', controle_epi, name='controle_epi'),
     path('controle-epi/<int:pk>/', controle_epi, name='editar_controle_epi'),
+    path('relatorio-epi/', relatorio_epi, name='relatorio_epi'),
 ]
