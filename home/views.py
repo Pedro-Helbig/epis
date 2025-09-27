@@ -1,3 +1,7 @@
+def listar_equipamentos(request):
+	nome = request.GET.get('nome', '')
+	equipamentos = Equipamento.objects.filter(nome__icontains=nome) if nome else Equipamento.objects.all()
+	return render(request, 'home/listar_equipamentos.html', {'equipamentos': equipamentos, 'nome': nome})
 from .forms import ColaboradorForm, EquipamentoForm, EmprestimoForm
 def controle_epi(request, pk=None):
 	if pk:
